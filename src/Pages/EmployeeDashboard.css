@@ -1,0 +1,287 @@
+/* =========================
+   GLOBAL BASE (1280+)
+========================= */
+
+.main {
+  padding: 24px;
+  background: #f4f6fb;
+  min-height: 100vh;
+  font-family: "Inter", Arial, sans-serif;
+  color: #111827;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #fff;
+  padding: 16px 22px;
+  border-radius: 14px;
+  margin-bottom: 22px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.summary-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: all 0.25s ease;
+  border: 1px solid #eef0f4;
+}
+
+.summary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.summary-card h2 {
+  margin-top: 10px;
+  color: #2563eb;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* =========================
+   PANELS
+========================= */
+
+.panel {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eef0f4;
+}
+
+.panel h2 {
+  margin-bottom: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.panel input,
+.panel textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid #dcdfe6;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.panel input:focus,
+.panel textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.panel textarea {
+  min-height: 90px;
+  resize: none;
+}
+
+/* =========================
+   TABLE WRAPPER (IMPORTANT FIX)
+========================= */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =========================
+   TABLE DESIGN (PRO LEVEL)
+========================= */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  min-width: 720px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* HEADER */
+.table th {
+  background: #0f172a;
+  color: #fff;
+  padding: 14px 12px;
+  text-align: left;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+/* CELLS */
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #eef0f4;
+  font-size: 14px;
+  color: #374151;
+  white-space: nowrap;
+}
+
+/* ROW HOVER */
+.table tbody tr:hover {
+  background: #f1f5f9;
+}
+
+/* STRIPED ROWS */
+.table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* =========================
+   PROFILE TEXT
+========================= */
+
+.panel p {
+  margin: 6px 0;
+  color: #374151;
+  font-size: 14px;
+}
+
+/* =========================
+   LAPTOP (1024px)
+========================= */
+
+@media (max-width: 1024px) {
+  .main {
+    padding: 18px;
+  }
+
+  .topbar h1 {
+    font-size: 20px;
+  }
+
+  .summary-card {
+    padding: 16px;
+  }
+
+  .table th,
+  .table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+/* =========================
+   TABLET (800px)
+========================= */
+
+@media (max-width: 800px) {
+  .main {
+    padding: 14px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .summary-card {
+    padding: 14px;
+  }
+
+  .panel {
+    padding: 14px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .table {
+    min-width: 650px;
+  }
+}
+
+/* =========================
+   MOBILE (500px)
+========================= */
+
+@media (max-width: 500px) {
+  .topbar h1 {
+    font-size: 18px;
+  }
+
+  .summary-card {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+
+  .table {
+    min-width: 600px;
+    font-size: 12px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}

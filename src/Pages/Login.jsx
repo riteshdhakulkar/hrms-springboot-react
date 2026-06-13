@@ -8,7 +8,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const API = "https://hrms-springbootems-backend.onrender.com/api";
+  
+  const API = "https://hrms-springbootems-backend.onrender.com";
 
   const login = async () => {
     try {
@@ -19,16 +20,16 @@ export default function Login() {
 
       console.log("LOGIN RESPONSE:", res.data);
 
-      // save data
+      // save login data
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
       localStorage.setItem("employeeId", res.data.employeeId);
 
-      // redirect
+      // redirect to dashboard
       navigate("/dashboard");
 
     } catch (err) {
-      console.log(err);
+      console.log("LOGIN ERROR:", err.response?.data || err.message);
       alert("Login Failed");
     }
   };

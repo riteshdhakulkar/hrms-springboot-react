@@ -9,14 +9,14 @@ export default function Login() {
   const navigate = useNavigate();
 
   
-  const API = "https://hrms-springbootems-backend.onrender.com";
-
   const API = import.meta.env.VITE_API_URL;
 
-const res = await axios.post(`${API}/auth/login`, {
-  username,
-  password,
-});
+  const login = async () => {
+    try {
+      const res = await axios.post(`${API}/auth/login`, {
+        username,
+        password,
+      });
 
       console.log("LOGIN RESPONSE:", res.data);
 

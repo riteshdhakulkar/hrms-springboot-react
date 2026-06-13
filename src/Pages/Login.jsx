@@ -8,28 +8,30 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-const login = async () => {
-  try {
-    const res = await axios.post("http://localhost:8080/auth/login", {
-      username,
-      password,
-    });
+  const API = "https://hrms-springbootems-backend.onrender.com/api";
 
-    console.log("LOGIN RESPONSE:", res.data);
+  const login = async () => {
+    try {
+      const res = await axios.post(`${API}/auth/login`, {
+        username,
+        password,
+      });
 
-    // save data
-    localStorage.setItem("token", res.data.token);
-    localStorage.setItem("role", res.data.role);
-    localStorage.setItem("employeeId", res.data.employeeId);
+      console.log("LOGIN RESPONSE:", res.data);
 
-    // ALWAYS go to dashboard
-    window.location.href = "/dashboard";
+      // save data
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("role", res.data.role);
+      localStorage.setItem("employeeId", res.data.employeeId);
 
-  } catch (err) {
-    console.log(err);
-    alert("Login Failed");
-  }
-};
+      // redirect
+      navigate("/dashboard");
+
+    } catch (err) {
+      console.log(err);
+      alert("Login Failed");
+    }
+  };
 
   return (
     <div className="login-container">

@@ -1,5 +1,5 @@
 import React from "react";
-import "./attendanceSummary.css";
+import "../components/AttendanceSummary.css";
 
 const AttendanceSummary = ({ summary }) => {
   if (!summary) return null;

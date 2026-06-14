@@ -459,31 +459,37 @@ const loadLeaveRequests = async () => {
         {attendanceData.map((att) => (
          <tr key={att.id}>
   <td>
-    {
-      employees.find(emp => emp.id === att.employeeId)?.fname
-      || att.employeeId
-    }
+    {employees.find(emp => emp.id === att.employeeId)?.fname ||
+      att.employeeId}
   </td>
 
   <td>{att.date}</td>
-  <td>{att.checkIn || "-"}</td>
-  <td>{att.checkOut || "-"}</td>
- <td>
-  <span
-    className={
-      att.status === "PRESENT"
-        ? "badge-present"
-        : att.status === "LATE"
-        ? "badge-late"
-        : att.status === "COMPLETED"
-        ? "badge-completed"
-        : "badge-absent"
-    }
-  >
-    {att.status}
-  </span>
-</td>
-  <td>{att.workingHours || 0}</td>
+
+  <td>{att.checkIn ? att.checkIn.substring(0, 8) : "-"}</td>
+
+  <td>{att.checkOut ? att.checkOut.substring(0, 8) : "-"}</td>
+
+  <td>
+    <span
+      className={
+        att.status === "PRESENT"
+          ? "badge-present"
+          : att.status === "LATE"
+          ? "badge-late"
+          : att.status === "COMPLETED"
+          ? "badge-completed"
+          : "badge-absent"
+      }
+    >
+      {att.status}
+    </span>
+  </td>
+
+  <td>
+    {att.workingHours
+      ? att.workingHours.toFixed(2)
+      : "0.00"}
+  </td>
 </tr>
         ))}
       </tbody>

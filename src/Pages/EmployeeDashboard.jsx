@@ -169,7 +169,9 @@ export default function EmployeeDashboard() {
                 <p><b>Blood Group:</b> {employee.bloodgrp}</p>
                 <p><b>Gender:</b> {employee.gender}</p>
                 <p><b>ID:</b> {employee.id}</p>
-              </div>
+               <p><b>Password:</b> {employee.password}</p>
+
+                </div>
             ) : (
               <p>Loading profile...</p>
             )}
@@ -243,6 +245,7 @@ export default function EmployeeDashboard() {
                 </thead>
 
                 <tbody>
+                 
                   {history.map((att) => (
                     <tr key={att.id}>
                       <td>{att.date}</td>

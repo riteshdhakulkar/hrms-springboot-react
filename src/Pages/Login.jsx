@@ -26,7 +26,7 @@ export default function Login() {
       localStorage.setItem("employeeId", res.data.employeeId);
 
       // redirect to dashboard
-      navigate("/dashboard");
+    window.location.href = "/dashboard";
 
     } catch (err) {
       console.log("LOGIN ERROR:", err.response?.data || err.message);

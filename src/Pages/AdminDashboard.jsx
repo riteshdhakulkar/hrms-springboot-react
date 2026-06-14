@@ -42,7 +42,7 @@ export default function AdminDashboard() {
   // ================= LOAD EMPLOYEES =================
  const loadEmployees = async () => {
   try {
-    const res = await axios.get(`${API}/allemp`);
+    const res = await axios.get(`${API}/employees`);
 
     console.log("API RESPONSE:", res.data);
 
@@ -77,7 +77,7 @@ const loadTodayAttendance = async () => {
 
 const loadAttendanceData = async () => {
   try {
-    const res = await axios.get(`${API}/attendance/all`);
+    const res = await axios.get(`${API}/attendance`);
 
     console.log("REPORT DATA:", res.data);
 
@@ -94,33 +94,6 @@ useEffect(() => {
   loadLeaveRequests();
 }, []);
 
-  // ================= LOCAL STORAGE SAFE LOAD =================
-//  useEffect(() => {
-//   try {
-//     const savedEmployees = localStorage.getItem("employees");
-//     const savedStatus = localStorage.getItem("todayStatus");
-
-//     if (savedEmployees) {
-//       const parsed = JSON.parse(savedEmployees);
-//       setEmployees(Array.isArray(parsed) ? parsed : []);
-//     }
-
-//     if (savedStatus) {
-//       const parsedStatus = JSON.parse(savedStatus);
-//       setTodayStatus(parsedStatus && typeof parsedStatus === "object" ? parsedStatus : {});
-//     }
-//   } catch (err) {
-//     console.error("LocalStorage error:", err);
-//     setEmployees([]);
-//     setTodayStatus({});
-//   }
-// }, []);
-
-  // ================= SAVE TO LOCAL STORAGE =================
-//   useEffect(() => {
-//     localStorage.setItem("employees", JSON.stringify(employees || []));
-//     localStorage.setItem("todayStatus", JSON.stringify(todayStatus || {}));
-//   }, [employees, todayStatus]);
 
   // ================= SUMMARY =================
   const loadSummary = async (id) => {
@@ -150,13 +123,13 @@ useEffect(() => {
         mobile: Number(employee.mobile || 0),
       };
 
-      if (employee.id) {
-        await axios.put(`${API}/update`, payload);
-        alert("Employee Updated Successfully");
-      } else {
-        await axios.post(`${API}/add`, payload);
-        alert("Employee Added Successfully");
-      }
+    if (employee.id) {
+  await axios.put(`${API}/employees`, payload);
+  alert("Employee Updated Successfully");
+} else {
+  await axios.post(`${API}/employees`, payload);
+  alert("Employee Added Successfully");
+}
 
       setEmployee({
         id: "",
@@ -194,7 +167,7 @@ useEffect(() => {
     if (!window.confirm("Delete Employee?")) return;
 
     try {
-      await axios.delete(`${API}/delete?email=${email}`);
+     await axios.delete(`${API}/employees?email=${email}`);
       loadEmployees();
     } catch (err) {
       console.log(err);
@@ -228,7 +201,9 @@ useEffect(() => {
 
 const approveLeave = async (id) => {
   try {
-    await axios.put(`${API}/leave/approve/${id}`);
+   await axios.put(
+  `${import.meta.env.VITE_API_URL.replace("/api", "")}/leave/approve/${id}`
+);
     loadLeaveRequests();
   } catch (err) {
     console.error(err);
@@ -237,7 +212,9 @@ const approveLeave = async (id) => {
 
 const rejectLeave = async (id) => {
   try {
-    await axios.put(`${API}/leave/reject/${id}`);
+   await axios.put(
+  `${import.meta.env.VITE_API_URL.replace("/api", "")}/leave/reject/${id}`
+);
     loadLeaveRequests();
   } catch (err) {
     console.error(err);
@@ -254,7 +231,9 @@ const filteredEmployees = safeEmployees.filter((emp) =>
 
 const loadLeaveRequests = async () => {
   try {
-    const res = await axios.get(`${API}/leave/all`);
+  const res = await axios.get(
+  `${import.meta.env.VITE_API_URL.replace("/api", "")}/leave/all`
+);
     setLeaveRequests(res.data);
   } catch (err) {
     console.error(err);
